@@ -134,15 +134,15 @@ def remove_redundant_constraints(constraints, weights, step_cost_flag):
             BEC_length_all_constraints, nonredundant_constraint_idxs = calculate_BEC_length(constraints, weights,
                                                                                             step_cost_flag)
         except:
-        # a subset of these constraints aren't numerically stable (e.g. you can have a constraint that's ever so slightly
-        # over the ground truth reward weight and thus fail to yield a proper polygonal convex hull. remove the violating constraints
-        A, b = constraints_to_halfspace_matrix(constraints, weights, step_cost_flag)
-        violating_idxs = indicate_violating_constraints(A, b)
+            # a subset of these constraints aren't numerically stable (e.g. you can have a constraint that's ever so slightly
+            # over the ground truth reward weight and thus fail to yield a proper polygonal convex hull. remove the violating constraints
+            A, b = constraints_to_halfspace_matrix(constraints, weights, step_cost_flag)
+            violating_idxs = indicate_violating_constraints(A, b)
 
-        for violating_idx in sorted(violating_idxs[0], reverse=True):
-            del constraints[violating_idx]
+            for violating_idx in sorted(violating_idxs[0], reverse=True):
+                del constraints[violating_idx]
 
-        BEC_length_all_constraints, nonredundant_constraint_idxs = calculate_BEC_length(constraints, weights,
+            BEC_length_all_constraints, nonredundant_constraint_idxs = calculate_BEC_length(constraints, weights,
                                                                                             step_cost_flag)
 
         nonredundant_constraints = [constraints[x] for x in nonredundant_constraint_idxs]
