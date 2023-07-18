@@ -1,6 +1,4 @@
-''' PolicyGradientAgentClass.py: Class for a policy gradient agent.
-
-Note: At present, this agent is not implemented.'''
+''' PolicyGradientAgentClass.py: Class for a policy gradient agent '''
 
 # Python imports.
 import random
@@ -12,7 +10,8 @@ class PolicyGradientAgent(Agent):
     ''' Class for a random decision maker. '''
 
     def __init__(self, actions, name=""):
-        raise NotImplementedError("Policy Gradient has not yet been implemented.)
+        name = "policy_gradient" if name is "" else name
+        Agent.__init__(self, name=name, actions=actions)
 
     def act(self, state, reward):
         '''
@@ -37,3 +36,4 @@ class PolicyGradientAgent(Agent):
             Perform a state of policy gradient.
         '''
         pass
+

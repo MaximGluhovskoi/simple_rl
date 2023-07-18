@@ -1,72 +1,72 @@
 {
-    "MISC": {
-        "instances": 10, 
-        "episodes": 50, 
-        "steps": 10, 
-        "track_disc_reward": false
-    }, 
     "MDP": {
+        "name": "<class 'simple_rl.tasks.grid_world.GridWorldMDPClass.GridWorldMDP'>",
         "params": {
-            "step_cost": 0.0, 
-            "lava_cost": 0.01, 
-            "slip_prob": 0.05, 
-            "is_goal_terminal": true, 
-            "rand_init": false, 
+            "width": 4,
+            "height": 3,
             "init_loc": {
+                "__tuple__": true,
                 "items": [
-                    1, 
+                    1,
                     1
-                ], 
-                "__tuple__": true
-            }, 
-            "walls": [
-                {
-                    "items": [
-                        2, 
-                        2
-                    ], 
-                    "__tuple__": true
-                }
-            ], 
-            "lava_locs": [
-                {
-                    "items": [
-                        4, 
-                        2
-                    ], 
-                    "__tuple__": true
-                }
-            ], 
+                ]
+            },
+            "rand_init": false,
             "goal_locs": [
                 {
+                    "__tuple__": true,
                     "items": [
-                        4, 
+                        4,
                         3
-                    ], 
-                    "__tuple__": true
+                    ]
                 }
-            ], 
-            "height": 3, 
-            "width": 4, 
-            "gamma": 0.95
-        }, 
-        "name": "<class 'simple_rl.tasks.grid_world.GridWorldMDPClass.GridWorldMDP'>"
-    }, 
-    "AGENTS": {
-        "<class 'simple_rl.agents.RandomAgentClass.RandomAgent'>": {
-            "index": 1, 
-            "params": {}
-        }, 
-        "<class 'simple_rl.agents.QLearningAgentClass.QLearningAgent'>": {
-            "index": 0, 
-            "params": {
-                "alpha": 0.1, 
-                "explore": "uniform", 
-                "anneal": false, 
-                "gamma": 0.99, 
-                "epsilon": 0.1
-            }
+            ],
+            "lava_locs": [
+                {
+                    "__tuple__": true,
+                    "items": [
+                        4,
+                        2
+                    ]
+                }
+            ],
+            "walls": [
+                {
+                    "__tuple__": true,
+                    "items": [
+                        2,
+                        2
+                    ]
+                }
+            ],
+            "is_goal_terminal": true,
+            "gamma": 0.95,
+            "slip_prob": 0.05,
+            "step_cost": 0.0,
+            "lava_cost": 0.01
         }
-    }, 
+    },
+    "AGENTS": {
+        "<class 'simple_rl.agents.QLearningAgentClass.QLearningAgent'>": {
+            "params": {
+                "alpha": 0.1,
+                "gamma": 0.99,
+                "epsilon": 0.1,
+                "anneal": false,
+                "explore": "uniform"
+            },
+            "index": 0
+        },
+        "<class 'simple_rl.agents.RandomAgentClass.RandomAgent'>": {
+            "params": {},
+            "index": 1
+        }
+    },
+    "MISC": {
+        "instances": 10,
+        "episodes": 50,
+        "steps": 10,
+        "track_disc_reward": false
+    },
     "FUNC": "run_agents_on_mdp"
 }

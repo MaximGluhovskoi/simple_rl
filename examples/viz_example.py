@@ -22,12 +22,12 @@ def parse_args():
 def main():
     
     # Setup MDP, Agents.
-    mdp = GridWorldMDP(width=4, height=3, init_loc=(1, 1), goal_locs=[(4, 3)], lava_locs=[(4, 2)], gamma=0.95, walls=[(2, 2)], slip_prob=0.1)
-    ql_agent = QLearningAgent(mdp.get_actions(), epsilon=0.2, alpha=0.2) 
+    mdp = GridWorldMDP(width=4, height=3, init_loc=(1, 1), goal_locs=[(4, 3)], lava_locs=[(4, 2), (1,3)], gamma=0.95, walls=[(2, 2)], slip_prob=0.1)
+    ql_agent = QLearningAgent(mdp.get_actions(), epsilon=0.9, alpha=0.2) 
     viz = parse_args()
 
     # Choose viz type.
-    viz = "value"
+    viz = "learning"
 
     if viz == "value":
         # --> Color corresponds to higher value.
@@ -48,7 +48,7 @@ def main():
     elif viz == "learning":
         # --> Press <r> to reset.
         # Show agent's interaction with the environment.
-        mdp.visualize_learning(ql_agent, delay=0.005, num_ep=500, num_steps=200)
+        mdp.visualize_learning(ql_agent)
     elif viz == "interactive":
         # Press <1>, <2>, <3>, and so on to execute action 1, action 2, etc.
     	mdp.visualize_interaction()

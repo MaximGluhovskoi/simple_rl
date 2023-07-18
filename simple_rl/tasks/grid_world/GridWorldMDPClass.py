@@ -265,7 +265,8 @@ class GridWorldMDP(MDP):
         from simple_rl.tasks.grid_world.grid_visualizer import _draw_state
         mdpv.visualize_value(self, _draw_state)
 
-    def visualize_learning(self, agent, delay=0.005, num_ep=None, num_steps=None):
+    def visualize_learning(self, agent, delay=0.005, num_ep=500, num_steps=200):
+        print(num_steps)
         from simple_rl.utils import mdp_visualizer as mdpv
         from simple_rl.tasks.grid_world.grid_visualizer import _draw_state
         mdpv.visualize_learning(self, agent, _draw_state, delay=delay, num_ep=num_ep, num_steps=num_steps)

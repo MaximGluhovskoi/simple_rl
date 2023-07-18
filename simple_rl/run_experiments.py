@@ -56,7 +56,7 @@ def play_markov_game(agent_ls, markov_game_mdp, instances=10, episodes=100, step
 
     # Record how long each agent spends learning.
     print("Running experiment: \n" + str(experiment))
-    start = time.time()
+    start = time.process_time()
 
     # For each instance of the agent.
     for instance in range(1, instances + 1):
@@ -274,7 +274,7 @@ def run_agents_on_mdp(agents,
     for agent in agents:
         print(str(agent) + " is learning.")
 
-        start = time.time()
+        start = time.process_time()
 
         # For each instance.
         for instance in range(1, instances + 1):
