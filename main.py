@@ -6,8 +6,8 @@ import dill as pickle
 import numpy as np
 import copy
 from termcolor import colored
-#import sage.all
-#import sage.geometry.polyhedron.base as Polyhedron
+import sage.all
+import sage.geometry.polyhedron.base as Polyhedron
 import matplotlib
 matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
