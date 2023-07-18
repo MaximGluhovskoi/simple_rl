@@ -1,7 +1,7 @@
 import random
 
 import numpy as np
-from pypoman import compute_polygon_hull
+from pypoman import compute_polygon_hull, indicate_violating_constraints
 from scipy.optimize import linprog
 #import sage.all
 #import sage.geometry.polyhedron.base as Polyhedron
@@ -123,7 +123,7 @@ def remove_redundant_constraints_lp(constraints, weights, step_cost_flag):
 
     return nonredundant_constraints, redundundant_constraints
 
-'''def remove_redundant_constraints(constraints, weights, step_cost_flag):
+def remove_redundant_constraints(constraints, weights, step_cost_flag):
     '''
     Summary: Remove redundant constraints
     '''
@@ -134,15 +134,15 @@ def remove_redundant_constraints_lp(constraints, weights, step_cost_flag):
             BEC_length_all_constraints, nonredundant_constraint_idxs = calculate_BEC_length(constraints, weights,
                                                                                             step_cost_flag)
         except:
-            # a subset of these constraints aren't numerically stable (e.g. you can have a constraint that's ever so slightly
-            # over the ground truth reward weight and thus fail to yield a proper polygonal convex hull. remove the violating constraints
-            A, b = constraints_to_halfspace_matrix(constraints, weights, step_cost_flag)
-            violating_idxs = indicate_violating_constraints(A, b)
+        # a subset of these constraints aren't numerically stable (e.g. you can have a constraint that's ever so slightly
+        # over the ground truth reward weight and thus fail to yield a proper polygonal convex hull. remove the violating constraints
+        A, b = constraints_to_halfspace_matrix(constraints, weights, step_cost_flag)
+        violating_idxs = indicate_violating_constraints(A, b)
 
-            for violating_idx in sorted(violating_idxs[0], reverse=True):
-                del constraints[violating_idx]
+        for violating_idx in sorted(violating_idxs[0], reverse=True):
+            del constraints[violating_idx]
 
-            BEC_length_all_constraints, nonredundant_constraint_idxs = calculate_BEC_length(constraints, weights,
+        BEC_length_all_constraints, nonredundant_constraint_idxs = calculate_BEC_length(constraints, weights,
                                                                                             step_cost_flag)
 
         nonredundant_constraints = [constraints[x] for x in nonredundant_constraint_idxs]
@@ -178,9 +178,8 @@ def remove_redundant_constraints_lp(constraints, weights, step_cost_flag):
         nonredundant_constraints = hrep_constraints[:, 1:]
         # reshape so that each element is a valid weight vector
         nonredundant_constraints = nonredundant_constraints.reshape(nonredundant_constraints.shape[0], 1, nonredundant_constraints.shape[1])
-
     return list(nonredundant_constraints)
-'''
+
 def perform_BEC_constraint_bookkeeping_flattened(BEC_constraints, min_subset_constraints_record):
     '''
     Summary: For each constraint in min_subset_constraints_record, see if it matches one of the BEC_constraints
